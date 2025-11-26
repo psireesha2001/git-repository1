@@ -20,7 +20,7 @@ jobs:
         continue-on-error: true
         with:
              image: nginx:latest
-             credentials: ${{ secrets.uptycs_credentials }}
+             credentials: ${{secrets.UPTYCS_CREDENTIALS}}
              install_dir: /home/runner/uptycs
              output-format: csv
              output-name: scan-results-arm64
