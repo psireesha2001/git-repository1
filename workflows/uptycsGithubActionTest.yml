@@ -1,0 +1,16 @@
+name: Test GitHub Actions
+
+on:
+  workflow_dispatch:   # Allows manual trigger
+  push:                # Runs on any commit
+
+jobs:
+  test-job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Print message
+        run: echo "GitHub Actions is working!"
