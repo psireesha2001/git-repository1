@@ -1,0 +1,26 @@
+name: Uptycs Docker Image Scan
+
+on:
+  workflow_dispatch:
+
+jobs:
+  scan-image:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Pull Docker Image
+        run: docker pull nginx:latest
+
+      - name: Scan Docker Image with Uptycs
+        uses: uptycslabs/uptycs-action@3.0.0
+        id: uptycs-scan-nginx
+        continue-on-error: true
+        with:
+             image: nginx:latest
+             credentials: ${{ secrets.uptycs_credentials }}
+             install_dir: /home/runner/uptycs
+             output-format: csv
+             output-name: scan-results-arm64
